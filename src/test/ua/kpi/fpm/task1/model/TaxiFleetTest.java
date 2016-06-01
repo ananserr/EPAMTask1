@@ -1,8 +1,7 @@
 package ua.kpi.fpm.task1.model;
 
+import org.junit.Assert;
 import org.junit.Test;
-
-import org.junit.Assert.*;
 
 /**
  * Created by Anastasia Serhienko on 5/31/16.
@@ -16,6 +15,6 @@ public class TaxiFleetTest {
         taxiFleet.addCar(car1);
         taxiFleet.addCar(car2);
 
-        assertEquals("Cost of taxi fleet", 2, taxiFleet.cost());
+        Assert.assertEquals("Cost of taxi fleet", 200, taxiFleet.cost());
     }
 }

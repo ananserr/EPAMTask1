@@ -16,4 +16,8 @@ public class Controller {
         this.model  = model;
         this.view = view;
     }
+
+    // The Work method
+    public void manageTaxiCompany() {
+    }
 }
