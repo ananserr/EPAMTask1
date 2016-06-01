@@ -22,7 +22,7 @@ public class TaxiFleet {
      */
     public int cost() {
         int cost = 0;
-        foreach (int i = 0; i < this.taxicabList.size(); i++) {
+        for (int i = 0; i < this.taxicabList.size(); i++) {
             cost += this.taxicabList.get(i).getCost();
         }
         return cost;
