@@ -1,4 +1,4 @@
-package ua.kpi.fpm.task1.model;
+package ua.kpi.fpm.task1;
 
 import org.junit.Test;
 
