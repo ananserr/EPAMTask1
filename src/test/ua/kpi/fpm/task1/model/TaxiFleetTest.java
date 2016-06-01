@@ -1,10 +1,8 @@
-package ua.kpi.fpm.task1;
+package ua.kpi.fpm.task1.model;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
-import ua.kpi.fpm.task1.model.TaxiFleet;
+import org.junit.Assert.*;
 
 /**
  * Created by Anastasia Serhienko on 5/31/16.
