@@ -1,6 +1,6 @@
 package ua.kpi.fpm.task1;
 
-import ua.kpi.fpm.task1.model.Model;
+import ua.kpi.fpm.task1.model.*;
 import ua.kpi.fpm.task1.view.View;
 import ua.kpi.fpm.task1.controller.Controller;
 

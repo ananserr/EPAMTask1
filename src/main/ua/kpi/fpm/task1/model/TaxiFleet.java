@@ -111,7 +111,6 @@ public class TaxiFleet {
      * @return ArrayList of found Cars
      */
     public ArrayList<Car> searchCarBySpeed(int lowerLimit, int higherLimit) {
-        sortBySpeed();
         ArrayList<Car> matchedCars = new ArrayList<>();
         for (Car car : this.taxicabArrayList) {
             if (car.getSpeed() >= lowerLimit && car.getSpeed() <= higherLimit) {
