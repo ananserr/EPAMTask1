@@ -3,20 +3,28 @@ package ua.kpi.fpm.task1.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.TreeSet;
 
 /**
  * Created by Anastasia Serhienko on 5/31/16.
  */
 public class TaxiFleet {
+    /**
+     * The ArrayList buffer into which the cars are stored.
+     */
     private ArrayList<Car> taxicabArrayList = new ArrayList<>();
-    private TreeSet<Car> taxicabTreeSet = new TreeSet<>(new CarSpeedComparator());
 
     /**
-     *
+     * The comparator for sorting cars by fuel consumption, implementation of the Comparator interface.
+     * Implements compare method.
      */
     public class CarFuelConsumptionComparator implements Comparator<Car> {
 
+        /**
+         * Overrides the compare method of the interface Comparator.
+         * @param car1 first parameter for comparison
+         * @param car2 second parameter for comparison
+         * @return -1 if first parameter is lower then second, 1 if higher, 0 if equal
+         */
         @Override
         public int compare(Car car1, Car car2) {
             float fc1 = car1.getFuelConsumption();
@@ -28,17 +36,31 @@ public class TaxiFleet {
         }
     }
 
+    /**
+     * The comparator for sorting cars by speed, implementation of the Comparator interface.
+     * Implements compare method.
+     */
     public class CarSpeedComparator implements Comparator<Car> {
 
+        /**
+         * Overrides the compare method of the interface Comparator.
+         * @param car1 first parameter for comparison
+         * @param car2 second parameter for comparison
+         * @return difference between first and second parameters
+         */
         @Override
         public int compare(Car car1, Car car2) {
-            return car1.getSpeed() - car2.getSpeed();
+            int s1 = car1.getSpeed();
+            int s2 = car2.getSpeed();
+            return s1 < s2 ? -1
+                    : s1 > s2 ? 1
+                    : 0;
         }
     }
 
     /**
-     *
-     * @return
+     * Returns the array of Cars which contain in this TaxiFleet.
+     * @return the array of Cars which contain in this TaxiFleet.
      */
     public Car[] getTaxicabArray() {
         Car[] taxicabArray = new Car[this.taxicabArrayList.size()];
@@ -47,52 +69,72 @@ public class TaxiFleet {
     }
 
     /**
-     *
-     * @param car
+     * Adds new Car to this taxi fleet.
+     * @param car new car
      */
     public void addCar(Car car) {
         this.taxicabArrayList.add(car);
-        this.taxicabTreeSet.add(car);
     }
 
     /**
-     *
-     * @return
+     * Calculates the cost of this taxi fleet.
+     * @return cost of fleet
      */
     public int cost() {
         int cost = 0;
 
-        for (Car var : taxicabArrayList) {
-            cost += var.getCost();
+        for (Car car : this.taxicabArrayList) {
+            cost += car.getCost();
         }
 
         return cost;
     }
 
     /**
-     *
+     * Sorts taxi fleet by fuel consumption using CarFuelConsumptionComparator.
      */
     public void sortByFuelConsumption() {
         Collections.sort(this.taxicabArrayList, new CarFuelConsumptionComparator());
     }
 
     /**
-     *
-     * @param lowerLimit
-     * @param higherLimit
-     * @return
+     * Sorts taxi fleet by speed using CarSpeedComparator.
      */
-    public Car[] searchCarBySpeed(int lowerLimit, int higherLimit) {
-        // ...
-        return
+    public void sortBySpeed() {
+        Collections.sort(this.taxicabArrayList, new CarSpeedComparator());
     }
 
     /**
-     *
-     * @param higherLimit
-     * @return
+     * Searches cars which are respective to defined interval of speed.
+     * @param lowerLimit lower limit of interval
+     * @param higherLimit higher limit of interval
+     * @return ArrayList of found Cars
      */
-    public Car[] searchCarBySpeed(int higherLimit) {
-        return searchCarBySpeed(0, higherLimit);
+    public ArrayList<Car> searchCarBySpeed(int lowerLimit, int higherLimit) {
+        sortBySpeed();
+        ArrayList<Car> matchedCars = new ArrayList<>();
+        for (Car car : this.taxicabArrayList) {
+            if (car.getSpeed() >= lowerLimit && car.getSpeed() <= higherLimit) {
+                matchedCars.add(car);
+            }
+        }
+
+        return matchedCars;
+    }
+
+    /**
+     * Searches cars which have a speed equal or higher than defined limit.
+     * @param lowerLimit defined lower limit
+     * @return ArrayList of found Cars
+     */
+    public ArrayList<Car> searchCarBySpeed(int lowerLimit) {
+        ArrayList<Car> matchedCars = new ArrayList<>();
+        for (Car car : this.taxicabArrayList) {
+            if (car.getSpeed() >= lowerLimit) {
+                matchedCars.add(car);
+            }
+        }
+
+        return matchedCars;
     }
 }
