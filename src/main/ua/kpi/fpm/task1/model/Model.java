@@ -22,6 +22,10 @@ public class Model {
         this.taxiFleet = fleet;
     }
 
+    /**
+     * Adds new Car to this taxi fleet.
+     * @param car new car
+     */
     public void addCarToFleet(Car car) {
         this.taxiFleet.addCar(car);
     }

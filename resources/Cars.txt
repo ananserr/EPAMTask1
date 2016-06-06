@@ -1,0 +1,6 @@
+sedan Mercury Monterey, $100 000, Fuel Consumption: 7.1, Speed: 230 km/h, 4 seats
+convertible (cabriolet) Chevrolet SS Convertible, $90 000, Fuel Consumption: 6.0, Speed: 200 km/h, 2 seats, soft vinyl top
+sedan GAZ-21 Volga, $60 000, Fuel Consumption: 8.3, Speed: 210 km/h, 4 seats
+pickup Chevrolet Colorado, $150 000, Fuel Consumption: 6.7, Speed: 200 km/h, 2 seats, Cargo volume: 40
+minivan Nissan Quest, $125 000, Fuel Consumption: 5.7, Speed 250 km/h, 7 seats, sliding doors
+convertible Ford CC 40A, $250 000, Fuel Consumption: 4.6, Speed 210 km/h, 1 seat, hard metal top
