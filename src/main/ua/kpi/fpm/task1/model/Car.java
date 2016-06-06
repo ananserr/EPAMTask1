@@ -12,6 +12,7 @@ public class Car {
 
     // Constructor
     public Car(String name, int cost, float fuelConsumption, int speed, int seatsCount) {
+        this.name = name;
         this.cost = cost;
         this.fuelConsumption = fuelConsumption;
         this.speed = speed;

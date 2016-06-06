@@ -40,24 +40,6 @@ public class TaxiFleetTest {
         //assertEquals("Sort descending by fuel consumption", );
     }
 
-   // @Test
-    /*public void testSortSpeed() throws Exception {
-        TaxiFleet taxiFleet = new TaxiFleet();
-        Car car1 = new Car("Chevrolet", 300, 5.1f, 300, 4);
-        Car car2 = new Car("Chevrolet", 300, 5.1f, 100, 4);
-        Car car3 = new Car("Chevrolet", 300, 5.1f, 200, 4);
-        taxiFleet.addCar(car1);
-        taxiFleet.addCar(car2);
-        taxiFleet.addCar(car3);
-
-        taxiFleet.sortByFuelConsumption();
-        Car[] taxiFleetArray = taxiFleet.getTaxicabArray();
-
-        Car[] sortedArray = {car2, car3, car1};
-
-        assertArrayEquals("Sort ascending by speed", sortedArray, taxiFleetArray);
-    }*/
-
     @Test
     public void testSearchCarBySpeed() throws Exception {
         TaxiFleet taxiFleet = new TaxiFleet();
