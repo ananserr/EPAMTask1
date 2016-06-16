@@ -2,61 +2,18 @@ package ua.kpi.fpm.task1.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 /**
- * Created by Anastasia Serhienko on 5/31/16.
+ * A collection of Cars.
+ * Created on 5/31/16.
+ * @author Anastasia Serhienko
+ * @version 1.0
  */
 public class TaxiFleet {
     /**
      * The ArrayList buffer into which the cars are stored.
      */
     private ArrayList<Car> taxicabArrayList = new ArrayList<>();
-
-    /**
-     * The comparator for sorting cars by fuel consumption, implementation of the Comparator interface.
-     * Implements compare method.
-     */
-    public class CarFuelConsumptionComparator implements Comparator<Car> {
-
-        /**
-         * Overrides the compare method of the interface Comparator.
-         * @param car1 first parameter for comparison
-         * @param car2 second parameter for comparison
-         * @return -1 if first parameter is lower then second, 1 if higher, 0 if equal
-         */
-        @Override
-        public int compare(Car car1, Car car2) {
-            float fc1 = car1.getFuelConsumption();
-            float fc2 = car2.getFuelConsumption();
-
-            return fc1 < fc2 ? -1
-                    : fc1 > fc2 ? 1
-                    : 0;
-        }
-    }
-
-    /**
-     * The comparator for sorting cars by speed, implementation of the Comparator interface.
-     * Implements compare method.
-     */
-    public class CarSpeedComparator implements Comparator<Car> {
-
-        /**
-         * Overrides the compare method of the interface Comparator.
-         * @param car1 first parameter for comparison
-         * @param car2 second parameter for comparison
-         * @return difference between first and second parameters
-         */
-        @Override
-        public int compare(Car car1, Car car2) {
-            int s1 = car1.getSpeed();
-            int s2 = car2.getSpeed();
-            return s1 < s2 ? -1
-                    : s1 > s2 ? 1
-                    : 0;
-        }
-    }
 
     /**
      * Returns the array of Cars which contain in this TaxiFleet.
@@ -94,14 +51,15 @@ public class TaxiFleet {
      * Sorts taxi fleet by fuel consumption using CarFuelConsumptionComparator.
      */
     public void sortByFuelConsumption() {
-        Collections.sort(this.taxicabArrayList, new CarFuelConsumptionComparator());
+        Collections.sort(this.taxicabArrayList,
+                (car1, car2) -> (int)Math.signum(car1.getFuelConsumption() - car2.getFuelConsumption()));
     }
 
     /**
      * Sorts taxi fleet by speed using CarSpeedComparator.
      */
     public void sortBySpeed() {
-        Collections.sort(this.taxicabArrayList, new CarSpeedComparator());
+        Collections.sort(this.taxicabArrayList, (car1, car2) -> (int)Math.signum(car1.getSpeed() - car2.getSpeed()));
     }
 
     /**
@@ -112,6 +70,7 @@ public class TaxiFleet {
      */
     public ArrayList<Car> searchCarBySpeed(int lowerLimit, int higherLimit) {
         ArrayList<Car> matchedCars = new ArrayList<>();
+
         for (Car car : this.taxicabArrayList) {
             if (car.getSpeed() >= lowerLimit && car.getSpeed() <= higherLimit) {
                 matchedCars.add(car);
@@ -128,6 +87,7 @@ public class TaxiFleet {
      */
     public ArrayList<Car> searchCarBySpeed(int lowerLimit) {
         ArrayList<Car> matchedCars = new ArrayList<>();
+
         for (Car car : this.taxicabArrayList) {
             if (car.getSpeed() >= lowerLimit) {
                 matchedCars.add(car);

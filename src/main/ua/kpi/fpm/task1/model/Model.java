@@ -1,7 +1,9 @@
 package ua.kpi.fpm.task1.model;
 
 /**
- * Created by Anastasia Serhienko on 5/31/16.
+ * Created on 5/31/16.
+ * @author Anastasia Serhienko
+ * @version 1.0
  */
 public class Model {
     TaxiFleet taxiFleet;

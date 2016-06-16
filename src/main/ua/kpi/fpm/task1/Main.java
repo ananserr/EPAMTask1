@@ -5,7 +5,9 @@ import ua.kpi.fpm.task1.view.View;
 import ua.kpi.fpm.task1.controller.Controller;
 
 /**
- * Created by Anastasia Serhienko on 5/31/16.
+ * Created on 5/31/16.
+ * @author Anastasia Serhienko
+ * @version 1.0
  */
 public class Main {
     public static void main(String[] args) {

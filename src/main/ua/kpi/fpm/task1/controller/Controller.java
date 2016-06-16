@@ -3,19 +3,21 @@ package ua.kpi.fpm.task1.controller;
 import ua.kpi.fpm.task1.model.*;
 import ua.kpi.fpm.task1.view.View;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.FileReader;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 
 /**
+ * Controller.
  * Created by Anastasia Serhienko on 5/31/16.
  */
 public class Controller {
-
+    /**
+     *
+     */
     private static final int FIRST_MENU_OPTION = 0;
+    /**
+     *
+     */
     private static final int LAST_MENU_OPTION = 3;
 
     // Constructor
@@ -32,7 +34,8 @@ public class Controller {
      */
     public void processUser() {
         Scanner sc = new Scanner(System.in);
-        TaxiFleet taxiFleet = createNewTaxiFleet(sc);
+        TaxiFleet taxiFleet = TaxiFleetGenerator.generateTaxiFleet();
+        printCarsInFleet(taxiFleet);
         menu(sc, taxiFleet);
     }
 
@@ -73,6 +76,7 @@ public class Controller {
         int menuOption = -1;
 
         view.printMessage(View.MENU);
+
         while (!inputIsValid) {
 
                 while (!sc.hasNextInt()) {
@@ -92,72 +96,7 @@ public class Controller {
             return menuOption;
     }
 
-    /**
-     * Creates new TaxiFleet and gets values with scanner for this new fleet.
-     * @param sc scanner link
-     * @return TaxiFleet
-     */
-    public TaxiFleet createNewTaxiFleet(Scanner sc) {
-        ArrayList<String> strings = new ArrayList<String>();
-
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("resources/Cars.txt"));
-            String line = reader.readLine();
-
-            while (line != null) {
-                strings.add(line);
-                line = reader.readLine();
-            }
-
-            reader.close();
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        view.printMessage(View.AVAILABLE_CARS);
-
-        for (int i = 0; i < strings.size(); i++) {
-            view.printCarsList(i, strings.get(i));
-        }
-
-        TaxiFleet taxiFleet = new TaxiFleet();
-        String input = sc.nextLine();
-        char[] chars = input.toCharArray();
-
-        for (char ch : chars) {
-            switch (ch) {
-                case '0':
-                    taxiFleet.addCar(new Car("Mercury Monterey", 100, 7.1f, 230, 4));
-                    break;
-                case '1':
-                    taxiFleet.addCar(new Cabriolet("Chevrolet SS Convertible", 90, 6.0f, 200, 2, Cabriolet.RoofType.SOFT,
-                            "vinyl"));
-                    break;
-                case '2':
-                    taxiFleet.addCar(new Car("GAZ-21 Volga", 60, 8.3f, 210, 4));
-                    break;
-                case '3':
-                    taxiFleet.addCar(new Pickup("Chevrolet Colorado", 150, 6.7f, 200, 2, 40));
-                    break;
-                case '4':
-                    taxiFleet.addCar(new Minivan("Nissan Quest", 125, 5.7f, 250, 7, Minivan.DoorType.SLIDING_DOOR));
-                    break;
-                case '5':
-                    taxiFleet.addCar(new Cabriolet("Ford CC 40A", 250, 4.6f, 210, 1, Cabriolet.RoofType.HARD, "metal"));
-                    break;
-                default:
-                    view.printMessage(View.WRONG_INPUT_DATA + View.INCORRECT_OPTION);
-            }
-        }
-
-        return taxiFleet;
-    }
-
-    /**
+     /**
      * Calls the method cost of the TaxiFleet class and provides output of returned value to the terminal.
      * @param fleet taxi fleet
      */
@@ -196,6 +135,14 @@ public class Controller {
 
         for (Car car : foundCarsArray) {
             view.printCarSpeed(View.CAR_SPEED_LIST_FORMAT, car.getName(), car.getSpeed());
+        }
+    }
+
+    public void printCarsInFleet(TaxiFleet fleet) {
+        view.printMessage(View.CARS_IN_FLEET);
+
+        for (Car car : fleet.getTaxicabArray()) {
+            view.printCars(car.getName(), car.getSpeed(), car.getFuelConsumption(), car.getCost());
         }
     }
 }

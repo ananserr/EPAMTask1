@@ -1,6 +1,10 @@
 package ua.kpi.fpm.task1.model;
 
 /**
+ * A common car. Has a name, cost, fuel consumption, speed and count of seats.
+ * Created on 5/31/16.
+ * @author Anastasia Serhienko
+ * @version 1.0
  * Created by Anastasia Serhienko on 5/31/16.
  */
 public class Car {
@@ -10,7 +14,14 @@ public class Car {
     private int speed;
     private int seatsCount;
 
-    // Constructor
+    /**
+     * Constructor.
+     * @param name name of car
+     * @param cost cost of car
+     * @param fuelConsumption fuel consumption of car
+     * @param speed speed of car
+     * @param seatsCount seats count of car
+     */
     public Car(String name, int cost, float fuelConsumption, int speed, int seatsCount) {
         this.name = name;
         this.cost = cost;
